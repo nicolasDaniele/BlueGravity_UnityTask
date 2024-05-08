@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -7,22 +6,25 @@ public class PlayerMovement : MonoBehaviour
     
     private Rigidbody2D body2D;
     private Vector2 movementDirection;
-    private PlayerInput playerInput;
  
     private void Awake() 
     {
         body2D = GetComponent<Rigidbody2D>();
-
-        playerInput = GetComponent<PlayerInput>();
-        PlayerInputActions playerInputActions = new PlayerInputActions();
-        playerInputActions.PlayerActionMap.Enable();
-        playerInputActions.PlayerActionMap.Movement.performed += UpdateDirection; 
-        playerInputActions.PlayerActionMap.Movement.canceled += UpdateDirection;  
     }
 
-    private void UpdateDirection(InputAction.CallbackContext context)
+    private void OnEnable() 
     {
-        movementDirection = context.ReadValue<Vector2>();
+        PlayerInputComponent.OnMovementPerformed += UpdateDirection;
+    }
+
+    private void OnDisble() 
+    {
+        PlayerInputComponent.OnMovementPerformed -= UpdateDirection;
+    }
+
+    private void UpdateDirection(Vector2 newDirection)
+    {
+        movementDirection = newDirection;
     }
 
     private void FixedUpdate() 

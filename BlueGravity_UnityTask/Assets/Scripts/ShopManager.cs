@@ -1,21 +1,21 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
-[Serializable]
-public struct Item
-{
-    public string itemName;
-    public int itemPrice;
-}
 
 public class ShopManager : MonoBehaviour
 {
     public static Action<Item> OnItemPurchased;
 
     [SerializeField] private Item[] items;
-    [SerializeField] private Transform container;
+    [SerializeField] private Transform itemsContainer;
+    [SerializeField] private GameObject actionsContainer;
+    
     [SerializeField] private GameObject shopItemPrefab;
+    [SerializeField] private GameObject returnButton;
+    private GameObject currentSubmenu = null;
+    private Dictionary<Item, Text> itemTexts = new Dictionary<Item, Text>();
+    private Dictionary<Item, Button> itemButtons = new Dictionary<Item, Button>();
 
     private void Start() 
     {
@@ -25,51 +25,103 @@ public class ShopManager : MonoBehaviour
         }
 
         HideItems();
+        HideActions();
+        SetReturnButtonActive(false);
     }
 
     private void OnEnable() 
     {
-        TestInteractableNPC.OnShopkeeperInteract += ShowItems;
+        ShopKeeperNPC.OnShopkeeperInteract += ShowActions;
+        ShopKeeperNPC.OnShopkeeperEndedInteraction += HideMenu;
+        InventoryManager.OnItemSold += AddItemToStock;
     }
 
     private void OnDisable() 
     {
-        TestInteractableNPC.OnShopkeeperInteract -= ShowItems;
+        ShopKeeperNPC.OnShopkeeperInteract -= ShowActions;
+        ShopKeeperNPC.OnShopkeeperEndedInteraction -= HideMenu;
+        InventoryManager.OnItemSold -= AddItemToStock;
     }
 
     private void SetupItem(Item item)
     {
-        GameObject shopItem = Instantiate(shopItemPrefab, container);
+        GameObject shopItem = Instantiate(shopItemPrefab, itemsContainer);
         
-        shopItem.transform.Find("ItemNameText").GetComponent<Text>().text = item.itemName;
-        shopItem.transform.Find("ItemPriceText").GetComponent<Text>().text = item.itemPrice.ToString();
+        Text itemName = shopItem.transform.Find("ItemNameText").GetComponent<Text>();
+        itemName.text = item.name;
+        itemTexts.Add(item, itemName);
 
-        shopItem.GetComponent<Button>().onClick.AddListener(delegate { TryToPurchaseItem(item); });
+        shopItem.transform.Find("ItemPriceText").GetComponent<Text>().text = item.price.ToString();
+        shopItem.transform.Find("ItemIcon").GetComponent<Image>().sprite = item.icon;
+
+        Button itemButton = shopItem.GetComponent<Button>(); 
+        itemButton.onClick.AddListener(delegate { TryToPurchaseItem(item); });
+        itemButtons.Add(item, itemButton);
+    }
+
+    private void AddItemToStock(Item item)
+    {
+        item.stock++;
+    }
+
+    private void HideMenu()
+    {
+        HideActions();
+        HideItems();
+        SetReturnButtonActive(false);
     }
 
     private void HideItems()
     {
-        container.gameObject.SetActive(false);
+        itemsContainer.gameObject.SetActive(false);
     }
 
-    private void ShowItems()
+    public void ShowItems()
     {
-        container.gameObject.SetActive(true);
+        HideActions();
+        itemsContainer.gameObject.SetActive(true);
     }  
+
+    public void HideActions()
+    {
+        actionsContainer.SetActive(false);
+    }
+
+    public void ShowActions()
+    {
+        HideItems();
+        actionsContainer.SetActive(true);
+    }
 
     public void TryToPurchaseItem(Item item)
     {
-        if(!CanAffordItem(item.itemPrice))
+        if(!CanAffordItem(item.price) || item.stock <= 0)
         {
             return;
         }
 
-        CurrencyManager.Instance.SubstactCurrency(item.itemPrice);
+        CurrencyManager.Instance.SubstactCurrency(item.price);
         OnItemPurchased?.Invoke(item);
+        item.stock--;
+        CheckForItemStock(item);
     }
 
     private bool CanAffordItem(int itemPrice)
     {
         return itemPrice <= CurrencyManager.Instance.CurrencyAmount;
+    }
+
+    private void CheckForItemStock(Item item)
+    {
+        if(item.stock == 0)
+        {
+            itemTexts[item].text = "Sold Out";
+            itemButtons[item].onClick.RemoveAllListeners();
+        }
+    }
+
+    public void SetReturnButtonActive(bool active)
+    {
+        returnButton.SetActive(active);
     }
 }

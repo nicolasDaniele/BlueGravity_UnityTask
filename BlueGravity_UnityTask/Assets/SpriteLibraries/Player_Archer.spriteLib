@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e6fedc2472449cead18ef23b5cb30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Library:
+  - m_Name: Idle
+    m_Hash: 1008081451
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Pawn_Blue_0
+      m_Hash: 1048026932
+      m_Sprite: {fileID: -786089896, guid: 34d6253dc18a079439cab14d2cd7e6f8, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -786089896, guid: 34d6253dc18a079439cab14d2cd7e6f8, type: 3}
+    - m_Name: Pawn_Blue_1
+      m_Hash: 158379938
+      m_Sprite: {fileID: -1307519922, guid: 34d6253dc18a079439cab14d2cd7e6f8, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1307519922, guid: 34d6253dc18a079439cab14d2cd7e6f8, type: 3}
+    - m_Name: Pawn_Blue_2
+      m_Hash: 276430360
+      m_Sprite: {fileID: 1736889711, guid: 34d6253dc18a079439cab14d2cd7e6f8, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1736889711, guid: 34d6253dc18a079439cab14d2cd7e6f8, type: 3}
+    - m_Name: Pawn_Blue_3
+      m_Hash: 662621838
+      m_Sprite: {fileID: -1896933033, guid: 34d6253dc18a079439cab14d2cd7e6f8, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1896933033, guid: 34d6253dc18a079439cab14d2cd7e6f8, type: 3}
+    - m_Name: Pawn_Blue_4
+      m_Hash: 958028589
+      m_Sprite: {fileID: 817527741, guid: 34d6253dc18a079439cab14d2cd7e6f8, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 817527741, guid: 34d6253dc18a079439cab14d2cd7e6f8, type: 3}
+    - m_Name: Pawn_Blue_5
+      m_Hash: 236809147
+      m_Sprite: {fileID: -1770331259, guid: 34d6253dc18a079439cab14d2cd7e6f8, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1770331259, guid: 34d6253dc18a079439cab14d2cd7e6f8, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 6
+  - m_Name: Walking
+    m_Hash: 670923915
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Pawn_Blue_6
+      m_Hash: 387201537
+      m_Sprite: {fileID: -1837949130, guid: 34d6253dc18a079439cab14d2cd7e6f8, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1837949130, guid: 34d6253dc18a079439cab14d2cd7e6f8, type: 3}
+    - m_Name: Pawn_Blue_7
+      m_Hash: 538118807
+      m_Sprite: {fileID: -1840679604, guid: 34d6253dc18a079439cab14d2cd7e6f8, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1840679604, guid: 34d6253dc18a079439cab14d2cd7e6f8, type: 3}
+    - m_Name: Pawn_Blue_8
+      m_Hash: 816584454
+      m_Sprite: {fileID: 558211997, guid: 34d6253dc18a079439cab14d2cd7e6f8, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 558211997, guid: 34d6253dc18a079439cab14d2cd7e6f8, type: 3}
+    - m_Name: Pawn_Blue_9
+      m_Hash: 128657296
+      m_Sprite: {fileID: -1954006616, guid: 34d6253dc18a079439cab14d2cd7e6f8, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1954006616, guid: 34d6253dc18a079439cab14d2cd7e6f8, type: 3}
+    - m_Name: Pawn_Blue_10
+      m_Hash: 214592842
+      m_Sprite: {fileID: 839035606, guid: 34d6253dc18a079439cab14d2cd7e6f8, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 839035606, guid: 34d6253dc18a079439cab14d2cd7e6f8, type: 3}
+    - m_Name: Pawn_Blue_11
+      m_Hash: 1003314652
+      m_Sprite: {fileID: 79324902, guid: 34d6253dc18a079439cab14d2cd7e6f8, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 79324902, guid: 34d6253dc18a079439cab14d2cd7e6f8, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 6
+  m_PrimaryLibraryGUID: 

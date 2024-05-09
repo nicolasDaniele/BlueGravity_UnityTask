@@ -1,0 +1,9 @@
+
+Top-Down Game Prototype
+The prototype has several systems that communicate with each other according to the needs of the game. First, the interactions system, which consists of an interface that describes what an interactable object can do, and a component thath the player should use to able to interact with them. Some of the intaractable objects, such as the SpeakingNPCc, are communicated with the DialogueSystem to display information in the UI, for example, conversations with NPCs.
+On the other hand, there is a shop that becomes active when the player interacts with the Shopkeeper NPC and allows them to buy or sell items. Whether the player buys or sells items, the shop system is in communication with both a currency system, which keeps track of the spent/earned money, and an inventory system that keeps track of the owned items. In turn, the inventory will provide the information for other subsystems, such as the SpriteLibraryAssetUpdater component which visually updates the player when they equip an item that is owned. All of these systems are reflected in the UI.
+
+My thought process was maily based on identifying which entities would be involved in the whole game system (for example, the currency, the inventory, etc), how they would be related to each other and how communication would occur between them.
+Personal assesment: the prototype met the expectations that I had, considering the time limitations. Some improvements could have been made, for example separate more some systems from the UI related to them.
+
+Almost all of the code used in this prototype has been developed from scratch, the only class I reutilized from other projects is SingletonMonobehaviour, a base class for all the systems that should be a singleton.

@@ -21,11 +21,13 @@ public class InteractionComponent : MonoBehaviour
         if(interactable != null)
         {
             canInteract = true;
-        }        
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other) 
     {
+        EndInteraction();
+
         if(other.GetComponent<IInteractable>() != null)
         {
             canInteract = false;
@@ -38,6 +40,14 @@ public class InteractionComponent : MonoBehaviour
         if(interactable != null && canInteract)
         {
             interactable.RespondToInteraction();
+        }
+    }
+
+    private void EndInteraction()
+    {
+        if(interactable != null && canInteract)
+        {
+            interactable.EndInteraction();
         }
     }
 }
